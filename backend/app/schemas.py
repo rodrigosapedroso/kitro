@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class ProductOut(BaseModel):
+class ProductsOut(BaseModel):
     name: str
     stock_quantity: int
     total_sold: int
