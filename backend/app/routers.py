@@ -3,10 +3,11 @@ from app.schemas import ProductsOut, MetricsOut
 from app.models import Products
 from sqlalchemy.orm import Session
 from app.database import get_db
+from decimal import Decimal
 
 router = APIRouter()
 
-TAX_RATE = 0.07
+TAX_RATE = Decimal("0.07")
 
 @router.get("/products", response_model=list[ProductsOut])
 def get_products(db: Session = Depends(get_db)): 
@@ -25,9 +26,10 @@ def get_metrics(db: Session = Depends(get_db)):
     for i in db.query(Products.total_sold).all():
         total_sold += i[0]
 
-    total_gains_after_taxes = 0
+    total_gains = 0
     for sold, price in db.query(Products.total_sold, Products.price).all():
-        total_gains_after_taxes += sold * price * (1-TAX_RATE)
+        total_gains += sold * price
+    total_gains_after_taxes = total_gains * (Decimal("1") - TAX_RATE)
 
     return MetricsOut(
         total_stock = total_stock,
