@@ -3,12 +3,10 @@ import type { Metrics } from "../types";
 import { getMetrics } from "../services/api";
 
 export default function Overview() {
+
   const [metrics, setMetrics] = useState<Metrics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  if (loading) return <p>Loading metrics...</p>;
-  if (error) return <p className="text-red-500">{error}</p>;
   
   useEffect(() => {
     async function fetchMetrics() {
@@ -25,6 +23,9 @@ export default function Overview() {
 
     fetchMetrics();
   }, []);
+
+  if (loading) return <p>Loading metrics...</p>;
+  if (error) return <p className="text-red-500">{error}</p>;
 
   return (
     <div className="grid grid-cols-3 gap-6 p-6">
