@@ -30,9 +30,9 @@ export default function Overview() {
 
   return (
     <div className="grid grid-cols-3 gap-6 p-6">
-      <Card label="Total Stock" value={metrics?.total_stock}/>
-      <Card label="Total Sold" value={metrics?.total_sold}/>
-      <Card label="Total Gains After Taxes" value={`CHF ${metrics?.total_gains_after_taxes.toFixed(2)}`}/>
+      <Card label="Total Stock (Units)" value={metrics?.total_stock}/>
+      <Card label="Total Sold (Units)" value={metrics?.total_sold}/>
+      <Card label="Total Gains After Taxes (CHF)" value={`${metrics?.total_gains_after_taxes.toFixed(2)}`}/>
     </div>
   );
 }

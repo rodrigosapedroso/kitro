@@ -45,9 +45,9 @@ export default function Products() {
         <thead>
           <tr>
             <th className="py-2 px-4">Name</th>
-            <th className="py-2 px-4">Stock Quantity</th>
-            <th className="py-2 px-4">Total Sold</th>
-            <th className="py-2 px-4">Price</th>
+            <th className="py-2 px-4">Stock Quantity (Units)</th>
+            <th className="py-2 px-4">Total Sold (Units)</th>
+            <th className="py-2 px-4">Price (CHF)</th>
           </tr>
         </thead>
         <tbody>
