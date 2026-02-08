@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getProducts } from "../services/api"
 import type { Products } from "../types";
 import Table from "../components/Table";
+import SearchBox from "../components/SearchBox";
 
 export default function Products() {
   
@@ -55,14 +56,15 @@ export default function Products() {
 
   return (
     <div className="p-6">
-      <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="mb-4 px-3 py-2 border rounded w-full"
+      <SearchBox 
+        placeholder="Search products..." 
+        value={searchTerm}
+        onChange={setSearchTerm} 
       />
-      <Table data={filteredProducts} headers={headers} />
+      <Table 
+        data={filteredProducts} 
+        headers={headers} 
+      />
     </div>
   );
     
