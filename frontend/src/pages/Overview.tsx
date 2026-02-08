@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Metrics } from "../types";
 import { getMetrics } from "../services/api";
+import Card from "../components/Card"
 
 export default function Overview() {
 
@@ -29,25 +30,9 @@ export default function Overview() {
 
   return (
     <div className="grid grid-cols-3 gap-6 p-6">
-      {/* Total Stock */}
-      <div className="bg-white shadow rounded p-6">
-        <h3 className="text-sm font-medium text-gray-500">Total Stock</h3>
-        <p className="mt-2 text-2xl font-bold">{metrics?.total_stock}</p>
-      </div>
-
-      {/* Total Sold */}
-      <div className="bg-white shadow rounded p-6">
-        <h3 className="text-sm font-medium text-gray-500">Total Sold</h3>
-        <p className="mt-2 text-2xl font-bold">{metrics?.total_sold}</p>
-      </div>
-
-      {/* Total Gains After Taxes */}
-      <div className="bg-white shadow rounded p-6">
-        <h3 className="text-sm font-medium text-gray-500">Total Gains After Taxes</h3>
-        <p className="mt-2 text-2xl font-bold">
-          ${metrics?.total_gains_after_taxes.toFixed(2)}
-        </p>
-      </div>
+      <Card label="Total Stock" value={metrics?.total_stock}/>
+      <Card label="Total Sold" value={metrics?.total_sold}/>
+      <Card label="Total Gains After Taxe" value={metrics?.total_gains_after_taxes.toFixed(2)}/>
     </div>
   );
 }
