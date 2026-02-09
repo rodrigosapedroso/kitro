@@ -10,11 +10,11 @@ interface TableProps {
 
 export default function Table({ data, headers }: TableProps) {
     return(
-        <table className="min-w-full bg-white shadow rounded overflow-hidden">
+        <table className="min-w-full bg-kitro-grayLight shadow rounded overflow-hidden">
             <thead>
                 <tr>
                     {headers.map((h, index) => (
-                        <th key={index} className="py-2 px-4">
+                        <th key={index} className="py-2 px-4 text-center">
                             {h.header}
                         </th>
                     ))}
@@ -24,7 +24,7 @@ export default function Table({ data, headers }: TableProps) {
                 {data.map((row,rowIndex) => (
                     <tr key={rowIndex} className="border-b hover:bg-gray-50">
                         {headers.map((h, colIndex) => (
-                            <td key={colIndex} className="py-2 px-4">
+                            <td key={colIndex} className="py-2 px-4 text-center">
                                 {h.value(row)}
                             </td>
                         ))}

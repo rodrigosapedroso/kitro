@@ -5,8 +5,8 @@ interface CardProps {
 
 export default function Card({ label, value }: CardProps) {
     return(
-        <div className="bg-white shadow rounded p-6">
-            <h3 className="text-sm font-medium text-gray-500">{label}</h3>
+        <div className="bg-kitro-successLight border border-kitro-success rounded-lg p-3 w-70">
+            <h3 className="text-base text-kitro-textPrimary">{label}</h3>
             <p className="mt-2 text-2xl font-bold">{value}</p>
         </div>
     )

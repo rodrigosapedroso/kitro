@@ -11,7 +11,7 @@ export default function SearchBox({ placeholder, value, onChange }: SearchBoxPro
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="mb-4 px-3 py-2 border rounded w-full"
+          className="bg-kitro-grayLight mb-4 px-3 py-2 border rounded w-full"
         />
     )
 }

@@ -32,10 +32,10 @@ export default function Overview() {
       {loading? (
         <p>Loading metrics...</p>
       ) : (
-        <div className="flex-col">
+        <div className="flex-col space-y-4">
           <Card label="Total Stock (Units)" value={metrics?.total_stock}/>
           <Card label="Total Sold (Units)" value={metrics?.total_sold}/>
-          <Card label="Total Gains After Taxes (CHF)" value={`${metrics?.total_gains_after_taxes.toFixed(2)}`}/>
+          <Card label="Total Gains After Taxes (CHF)" value={metrics?.total_gains_after_taxes.toFixed(2)}/>
         </div>
       )}    
     </div>
