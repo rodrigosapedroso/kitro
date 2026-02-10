@@ -10,7 +10,7 @@ interface TableProps {
 
 export default function Table({ data, headers }: TableProps) {
     return(
-        <table className="min-w-full bg-kitro-grayLight shadow rounded overflow-hidden">
+        <table className="min-w-full bg-cream-100 shadow rounded overflow-hidden">
             <thead>
                 <tr>
                     {headers.map((h, index) => (
@@ -22,7 +22,7 @@ export default function Table({ data, headers }: TableProps) {
             </thead>
             <tbody>
                 {data.map((row,rowIndex) => (
-                    <tr key={rowIndex} className="border-b hover:bg-gray-50">
+                    <tr key={rowIndex} className="border-b hover:bg-gray-200">
                         {headers.map((h, colIndex) => (
                             <td key={colIndex} className="py-2 px-4 text-center">
                                 {h.value(row)}
