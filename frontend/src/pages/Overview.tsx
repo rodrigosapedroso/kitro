@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MainCard from "../components/MainCard";
-import DetailCard from "../components/DetailCard";
+import Card from "../components/Card";
+import BarChart from "../components/BarChart";
 import useProducts from "../hooks/useProducts";
 import useMetrics from "../hooks/useMetrics";
 
@@ -10,7 +10,7 @@ export default function Overview() {
 
   const [detail, setDetail] = useState<Detail>(null);
 
-  const { products } = useProducts();
+  const { products, loading: productsLoading, error: productsError  } = useProducts();
   const { metrics, loading: metricsLoading, error: metricsError } = useMetrics();
 
   function handleCardClick(type: Detail) {
@@ -32,8 +32,6 @@ export default function Overview() {
     value: Math.round(product.total_sold * product.price * 0.93),
   }));
 
-  if (metricsError) return <p className="text-red-500">{metricsError}</p>;
-
   return (
     <>
       <h2 className="tracking-wide text-red-200 mb-6 px-6 mt-10 uppercase">
@@ -45,61 +43,51 @@ export default function Overview() {
           BUSINESS DATA
         </span>
       </h2>
-      <div className="grid grid-cols-3 gap-6 p-6">
-        {metricsLoading? (
-          <p>Loading metrics...</p>
-        ) : (
-          <>
-            <div className="flex flex-col gap-4">
-              <MainCard 
-                label="Total Stock (Units)" 
-                value={metrics?.total_stock}
-                onClick={() => handleCardClick("stock")}
-                activeItem={detail === "stock"}
-              />
-              {detail === "stock" && (
-                <div className="col-span-3">
-                  <DetailCard 
-                    title="Detailed Stock:" 
-                    items={stockItems} />
-                </div>
-              )}
-            </div>
-            
-            <div className="flex flex-col gap-4">
-              <MainCard 
-                label="Total Sold (Units)" 
-                value={metrics?.total_sold}
-                onClick={() => handleCardClick("sold")}
-                activeItem={detail === "sold"}
-              />
-              {detail === "sold" && (
-                <div className="col-span-3">
-                  <DetailCard 
-                    title="Selling Details:" 
-                    items={soldItems}/>
-                </div>
-              )}
-            </div>
-            
-            <div className="flex flex-col gap-4">
-              <MainCard 
-                label="Total Gains After Taxes (CHF)" 
-                value={metrics?.total_gains_after_taxes.toFixed(2)}
-                onClick={() => handleCardClick("gains")}
-                activeItem={detail === "gains"}
-              />
-              {detail === "gains" && (
-                <div className="col-span-3">
-                  <DetailCard 
-                    title="Detailed Gains:" 
-                    items={gainsItems} />
-                </div>
-              )}
-            </div>
-          </>
-        )}    
-      </div>
+      {metricsLoading? (
+        <p>Loading metrics...</p>
+      ) : metricsError ? (
+        <p className="text-red-500">{metricsError}</p>
+      ) : (
+        <>
+          <div className="grid grid-cols-3 gap-6 px-6">
+            <Card 
+              label="Total Stock (Units)" 
+              value={metrics?.total_stock}
+              onClick={() => handleCardClick("stock")}
+              activeItem={detail === "stock"}
+            />
+            <Card 
+              label="Total Sold (Units)" 
+              value={metrics?.total_sold}
+              onClick={() => handleCardClick("sold")}
+              activeItem={detail === "sold"}
+            />
+            <Card 
+              label="Total Gains After Taxes (CHF)" 
+              value={metrics?.total_gains_after_taxes.toFixed(2)}
+              onClick={() => handleCardClick("gains")}
+              activeItem={detail === "gains"}
+            />
+          </div>
+          <div className="px-6 mt-10">
+            {detail && (
+              <>
+                {productsLoading ? (
+                  <p>Loading data...</p>
+                ) : productsError ? (
+                  <p className="text-red-500 font-semibold">Failed to load data.</p>
+                ) : (
+                  <>
+                    {detail === "stock" && <BarChart title="Stock Breakdown" items={stockItems} />}
+                    {detail === "sold" && <BarChart title="Sold Breakdown" items={soldItems} />}
+                    {detail === "gains" && <BarChart title="Gains Breakdown" items={gainsItems} />}
+                  </>
+                )}
+              </>
+            )}
+          </div>
+        </>
+      )}    
     </>
   );
 }
