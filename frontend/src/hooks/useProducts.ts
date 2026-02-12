@@ -15,7 +15,7 @@ export default function useProducts() {
         const data = await getProducts();
         setProducts(data);
       } catch (err) {
-        setError("Failed to fetch products.");
+        setError("Failed to load products.");
       } finally {
         clearTimeout(timer) //if fetch under 50ms, cancel timer
         setLoading(false);

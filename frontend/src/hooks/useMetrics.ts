@@ -15,7 +15,7 @@ export default function useMetrics() {
         const data = await getMetrics();
         setMetrics(data);
       } catch {
-        setError("Failed to fetch metrics.");
+        setError("Failed to load metrics.");
       } finally {
         clearTimeout(timer) //if fetch under 50ms, cancel timer
         setLoading(false);
