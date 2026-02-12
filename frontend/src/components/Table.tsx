@@ -13,8 +13,8 @@ export default function Table({ data, headers }: TableProps) {
         <table className="min-w-full bg-cream-100 shadow rounded overflow-hidden">
             <thead>
                 <tr>
-                    {headers.map((h, index) => (
-                        <th key={index} className="py-2 px-4 text-center bg-coffee-200">
+                    {headers.map((h) => (
+                        <th key={h.header} className="py-2 px-4 text-center bg-coffee-200">
                             {h.header}
                         </th>
                     ))}
