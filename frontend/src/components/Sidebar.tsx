@@ -15,7 +15,7 @@ interface SidebarProps {
 
 export default function Sidebar({ logo, items, activeItem }: SidebarProps) {
     return (
-        <aside className="w-56 bg-coffee-200 border-r border-coffee-300 p-4 flex flex-col gap-4 items-center">
+        <aside className="w-56 bg-coffee-200 border-r border-cream-400 p-4 flex flex-col gap-4 items-center">
             <div className="mt-12 flex justify-center w-full">
                 {logo}
             </div>

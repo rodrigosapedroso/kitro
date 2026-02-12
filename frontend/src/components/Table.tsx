@@ -22,7 +22,7 @@ export default function Table({ data, headers }: TableProps) {
             </thead>
             <tbody>
                 {data.map((row,rowIndex) => (
-                    <tr key={rowIndex} className="border-b hover:bg-gray-200">
+                    <tr key={rowIndex} className="border-b bg-white hover:bg-gray-200">
                         {headers.map((h, colIndex) => (
                             <td key={colIndex} className="py-2 px-4 text-center">
                                 {h.value(row)}
