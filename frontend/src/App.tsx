@@ -15,13 +15,19 @@ function App() {
     {
       label: "Overview", 
       page: "overview",
-      navigate: () => {setPage("overview"); setActive("overview")},
+      navigate: () => {
+        setPage("overview"); 
+        setActive("overview")
+      },
       icon: <SquareChartGantt className="w-4 h-4"/>
     },
     {
       label: "Products",
       page: "products",
-      navigate: () => {setPage("products"), setActive("products")},
+      navigate: () => {
+        setPage("products"); 
+        setActive("products")
+      },
       icon: <Apple className="w-4 h-4"/>
     },
   ]
@@ -30,8 +36,15 @@ function App() {
     <div className="flex min-h-screen">
       <Sidebar 
         logo={
-          <button onClick= {() => {setPage("overview"); setActive(null)}}>
-            <img src={kitroLogo} alt="Kitro Logo" className="h-32 w-auto"/>
+          <button 
+            onClick= {() => {
+              setPage("overview"); 
+              setActive(null)
+            }}>
+            <img 
+              src={kitroLogo} 
+              alt="Kitro Logo" 
+              className="h-32 w-auto"/>
           </button>
         } 
         items={sidebarItems}
