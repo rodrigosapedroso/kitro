@@ -1,11 +1,11 @@
-interface MainCardProps {
+interface CardProps {
     label: string;
     value: string | number | undefined;
     onClick?: () => void;
     activeItem: boolean;
 }
 
-export default function MainCard({ label, value, onClick, activeItem }: MainCardProps) {
+export default function Card({ label, value, onClick, activeItem }: CardProps) {
     const Component = onClick? "button" : "div";
 
     return(
